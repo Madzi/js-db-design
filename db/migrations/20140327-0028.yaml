@@ -1,0 +1,44 @@
+databaseChangeLog:
+    - changeSet:
+        id: create-table-users
+        author: madzi
+        schema: schema
+        changes:
+            - createTable:
+                tableName: users
+                remarks: Пользователи
+                columns:
+                    - column:
+                        name: uid
+                        remarks: Идентификатор
+                        type: ${type.long}
+                        constraints:
+                            nullable: false
+                            primaryKey: true
+                            primaryKeyName: pk_users
+                    - column:
+                        name: email
+                        remarks: Электронная почта
+                        type: ${type.varchar}(250)
+                        constraints:
+                            nullable: false
+                    - column:
+                        name: password
+                        remarks: Пароль
+                        type: ${type.varchar}(250)
+                        constraints:
+                            nullable: false
+            - createSequence:
+                sequenceName: seq_users_uid
+            - insert:
+                tableName: users
+                columns:
+                    - column:
+                        name: uid
+                        valueNumeric: 0
+                    - column:
+                        name: email
+                        value: admin@madzi.ru
+                    - column:
+                        name: password
+                        value: password
