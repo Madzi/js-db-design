@@ -1,0 +1,12 @@
+{
+    "name": "js-db-designer",
+    "description": "JavaScript DB Designer",
+    "version": "1.0",
+    "url": "http://localhost:8080/js-db-designer/",
+    "options": {
+        "external": {
+            "data": "http://yuilibrary.com/yui/docs/api/data.json"
+        },
+        "tabtospace": 4
+    }
+}

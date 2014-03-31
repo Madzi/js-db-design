@@ -1,0 +1,66 @@
+databaseChangeLog:
+- changeSet:
+    id: initial-schema
+    author: madzi
+    schema: schema
+    changes:
+    - createTable:
+        tableName: users
+        remarks: Пользователи
+        columns:
+        - column:
+            name: uid
+            type: ${type.long}
+            remarks: Идентификатор
+            constraints:
+                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_users
+        - column:
+            name: email
+            type: ${type.varchar}(250)
+            remarks: Электронная почта
+            constraints:
+                nullable: false
+                unique: true
+                uniqueConstraintName: uk_users_email
+        - column:
+            name: username
+            type: ${type.varchar}(250)
+            remarks: Имя пользователя
+        - column:
+            name: password
+            type: ${type.varchar}(128)
+            remarks: Пароль
+            constraints:
+                nullable: false
+    - createTable:
+        tableName: projects
+        remarks: Проекты
+        columns:
+        - column:
+            name: uid
+            type: ${type.long}
+            remarks: Идентификатор
+            constraints:
+                nullable: false
+                primaryKey: true
+                primaryKeyName: pk_projects
+        - column:
+            name: user_id
+            type: ${type.long}
+            remarks: пользователь
+            constraints:
+                nullable: false
+                references: users(uid)
+                foreignKeyName: fk_projects_users
+        - column:
+            name: name
+            type: ${type.varchar}(250)
+            remarks: Название проекта
+            constraints:
+                nullable: false
+        - column:
+            name: description
+            type: ${type.text}
+            remarks: Описание проекта
